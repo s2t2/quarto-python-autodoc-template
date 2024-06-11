@@ -1,7 +1,7 @@
 
 # https://jupyterbook.org/en/stable/publish/gh-pages.html
 
-name: deploy-book
+name: quarto-pages
 
 on:
   push:
@@ -28,17 +28,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    # INSTALL QUARTO
-    - name: Set up Quarto
-      uses: quarto-dev/quarto-actions/setup@v2
-      #env:
-      #  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        # To install LaTeX to build PDF book
-        # (to get past errors on the CI build)
-        tinytex: true
-        # uncomment below and fill to pin a version
-        # version: SPECIFIC-QUARTO-VERSION-HERE
+    #
+    # PYTHON STUFF
+    #
 
     # INSTALL PYTHON
     - name: Set up Python 3.11
@@ -56,18 +48,39 @@ jobs:
       run: |
         pip install -r docs/requirements.txt
 
-    # Save the book's HTML contents to the _build directory
+    #
+    # QUARTO STUFF
+    #
+
+    # INSTALL QUARTO
+    # https://github.com/quarto-dev/quarto-actions/blob/main/examples/quarto-publish-example.yml
+    - name: Set up Quarto
+      uses: quarto-dev/quarto-actions/setup@v2
+      #env:
+      #  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        # To install LaTeX to build PDF book
+        # (to get past errors on the CI build)
+        tinytex: true
+        # uncomment below and fill to pin a version
+        # version: SPECIFIC-QUARTO-VERSION-HERE
+
+    # RENDER WEBSITE CONTENTS TO DOCS/_BUILD
     - name: Build the book
       run: |
         quarto render docs/
 
-    # Upload the book's HTML as an artifact
+    #
+    # GITHUB PAGES STUFF
+    #
+
+    # UPLOAD CONTENTS OF DOCS/_BUILD
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v2
       with:
         path: "docs/_build"
 
-    # Deploy the book's HTML to GitHub Pages
+    # DEPLOY WEBSITE CONTENTS TO GITHUB PAGES
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v2

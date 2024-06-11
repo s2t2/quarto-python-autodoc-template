@@ -1,6 +1,5 @@
 
 
-
 build:
 	quartodoc build --config docs/_quarto.yml
 	quarto render docs/

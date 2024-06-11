@@ -25,9 +25,17 @@ website:
     contents:
       - href: index.qmd
         text: Home
-      - python-example.qmd
-      - demo-notebook.ipynb
-      - reference/index.qmd
+
+      - section: "Documentation"
+        contents:
+          - href: python-example.qmd
+            title: "Python Markdown"
+          - href: demo-notebook.ipynb
+            title: "Python Notebook"
+          - href: reference/index.qmd
+            title: "Python Package Reference"
+
+      - text: "---"
 
 format:
   html:

@@ -9,3 +9,9 @@
 # Quarto Python Autodoc Example
 
 This is an example content publishing toolchain template, using [Quarto](https://quarto.org).
+
+See the following examples:
+
+   + [Python in Markdown](./demo-notebook.ipynb)
+   + [Python Notebook](./python-example.qmd)
+   + [Python Package Auto-documentation](./reference/index.qmd)
