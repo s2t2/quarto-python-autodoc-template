@@ -1,28 +1,19 @@
 
 
 
-
+build:
+	quartodoc build --config docs/_quarto.yml
+	quarto render docs/
+	open docs/_build/index.html
 
 autodoc:
-	quartodoc build --config docs/_quarto.yml --verbose
+	quartodoc build --config docs/_quarto.yml
 
-html:
+preview:
+	quarto preview docs/
+
+render:
 	quarto render docs/
 
-open-html:
+open:
 	open docs/_build/index.html
-
-
-
-build:
-	quartodoc build --config docs/_quarto.yml --verbose
-	quarto render docs/
-	open docs/_build/index.html
-
-# THESE BREAK THE HTML THOUGH?
-
-pdf:
-	quarto render docs/ --to pdf
-
-open-pdf:
-	open docs/_build/index.pdf

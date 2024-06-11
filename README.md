@@ -1,8 +1,6 @@
-# quarto-book-template
+# quarto-python-autodoc-template
 
-Because there has to be something better / easier than a sphinx based content publishing toolchain.
-
-And so R and Python users can use the same toolchain.
+How to generate auto-documentation for a Python package, using [quarto](https://quarto.org) and [quartodoc](https://machow.github.io/quartodoc/get-started/overview.html).
 
 
 ## Prerequisites
@@ -31,56 +29,42 @@ conda activate quarto-env
 pip install docs/requirements.txt
 ```
 
-## Content
+## Python Package
 
-References:
+See ["my_project" directory](/my_project/) for an example Python package code.
 
-  + https://quarto.org/docs/computations/python.html
-  + https://quarto.org/docs/reference/formats/pdf.html
+And corresponding tests in the ["test" directory](/test/).
+
+We use the top-level ["requirements.txt" file](/requirements.txt) to list dependencies of our Python package, including `pytest` for running tests.
+
+## Auto Documentation
+
+In the "quarto.yml" config file, we specified that our site should display "references/index.qmd", which will act as the entrypoint into the package documentation.
+
+Use quartodoc to automatically generate content into the "references" directory:
+
+```sh
+quartodoc build --config docs/_quarto.yml --verbose
+```
+
+After the documentation pages have been generated, then we can preview and build the site.
+
 
 ## Building
+
+
+Previewing (runs like a local webserver):
+
+```sh
+quarto preview docs/
+```
 
 
 Rendering a doc (performs a build and writes local HTML files to "__build_", as configured):
 
 ```sh
-quarto render docs/
+quarto render docs/ --verbose
 ```
-
-Rendering a PDF (creates weird files? creates a PDF per file?):
-```sh
-quarto render docs/ --to pdf
-```
-
-Previewing (runs like a local webserver, creates weird files?):
-
-```sh
-# preview as html
-quarto preview docs/
-
-# preview as pdf
-#quarto preview docs/ --to pdf
-```
-
-
-### Autodocs
-
-Uses [quartodoc](https://machow.github.io/quartodoc/get-started/overview.html) to auto-document your python package (if that's your use case):
-
-
-
-Auto docs:
-
-```sh
-quartodoc build --config docs/_quarto.yml --verbose
-
-#make autodoc
-```
-
-That will create or update QMD files in the docs/references folder. We check these in, and we point our quarto config file to render a link to the index of this folder. This provides an entrypoint into the auto-documentation.
-
-Then we build the site as normal.
-
 
 
 
