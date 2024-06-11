@@ -3,9 +3,15 @@ format:
   html:
     code-fold: true
 jupyter: python3
+execute:
+  cache: true # re-render only when source changes
 ---
 
-# Python Example
+# Python in Markdown
+
+See also: https://quarto.org/docs/computations/python.html
+
+## Generating Figures
 
 For a demonstration of a line plot on a polar axis, see @fig-polar.
 
@@ -26,6 +32,3 @@ ax.set_rticks([0.5, 1, 1.5, 2])
 ax.grid(True)
 plt.show()
 ```
-
-
-See also: https://quarto.org/docs/computations/python.html

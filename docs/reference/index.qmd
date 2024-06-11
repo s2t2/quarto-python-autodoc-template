@@ -1,4 +1,4 @@
-# Function reference {.doc .doc-index}
+# Function Reference {.doc .doc-index}
 
 ## Some functions
 

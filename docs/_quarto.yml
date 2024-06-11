@@ -16,13 +16,15 @@ website:
 
   search: true
   page-navigation: true # adds buttons at bottom of page
-  #number-sections: false
 
   navbar:
     right:
+      - about.qmd
+
+  sidebar:
+    contents:
       - href: index.qmd
         text: Home
-      - about.qmd
       - python-example.qmd
       - demo-notebook.ipynb
       - reference/index.qmd
@@ -41,14 +43,14 @@ format:
 quartodoc:
   # the name used to import the package you want to create reference docs for
   package: my_project
-
-  # write sidebar data to this file
-  #sidebar: _sidebar.yml
-
-  #style: pkgdown
+  #version: "v1.0.1"
 
   # directory relative to current (docs/)
   dir: reference
+
+  #style: pkgdown
+
+  title: Function Reference
 
   sections:
     - title: Some functions
